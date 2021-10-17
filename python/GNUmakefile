@@ -35,6 +35,7 @@ package:
 	cp $(MAKEFILE_ROOT)/../LICENSE $(MAKEFILE_ROOT)
 	cp $(MAKEFILE_ROOT)/../README.md $(MAKEFILE_ROOT)
 	$(call START_TASK,Building source distribution for Python package...)
+	rm -rf $(ARTIFACT_OUT_DIR)
 	mkdir -p $(ARTIFACT_OUT_DIR)
 	pipenv run python $(MAKEFILE_ROOT)/setup.py sdist \
 		--dist-dir $(ARTIFACT_OUT_DIR)
