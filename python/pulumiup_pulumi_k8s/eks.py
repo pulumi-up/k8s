@@ -7,7 +7,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 import pulumi
 from pulumi import ResourceOptions
 from pulumi_aws import cloudwatch, config, ec2, iam
-import pulumi_eks as eksp
+import pulumi_eks as eks
 
 
 
@@ -19,6 +19,7 @@ class EksClusterArgs:
 
     def __init__(self,
                 description: str,
+                vpc_id: str
                 ):
                 #  base_tags: Mapping[str, str],
                 #  availability_zone_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
@@ -70,11 +71,16 @@ class EksCluster(pulumi.ComponentResource):
         role1 = create_role("example-role1")
         role2 = create_role("example-role2")
 
+        cluster_args = eks.ClusterArgs(
+            p
+        )
+
         # Create an EKS cluster.
-        cluster = eksp.Cluster(f"{name}-cluster",
+        cluster = eks.Cluster(f"{name}-cluster",
                             vpc_id=args.vpc_id,
                             skip_default_node_group=True,
                             instance_roles=[role0, role1, role2],
+                            
                             opts=ResourceOptions(parent=self))
 
 def create_role(name: str) -> iam.Role:

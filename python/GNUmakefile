@@ -1,7 +1,7 @@
 SHELL = bash
 MAKEFILE_ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
-ARTIFACT_OUT_DIR := $(MAKEFILE_ROOT)/../out/python
+ARTIFACT_OUT_DIR := $(MAKEFILE_ROOT)/../dist/python
 
 START_TASK = @echo -e "\033[0;32m==> $(1)...\033[0m"
 START_TARGET = @echo -e "\033[0;35m==> Started target '$@'\033[0m"
@@ -11,7 +11,7 @@ DONE_TARGET = @echo -e "\033[0;35m==> Completed target '$@'\033[0m"
 bootstrap:
 	$(call START_TARGET)
 	$(call START_TASK,Ensuring pipenv is configured)
-	pipenv install
+	pipenv install -d
 	$(call DONE_TARGET)
 
 .PHONY: test
@@ -25,12 +25,11 @@ test:
 lint:
 	$(call START_TARGET)
 	$(call START_TASK,Linting Python code)
-	pipenv run pylint --rcfile $(MAKEFILE_ROOT)/.pylintrc \
-		$(MAKEFILE_ROOT)/jen20_pulumi_aws_vpc
+	pipenv run pylint --rcfile $(MAKEFILE_ROOT)/.pylintrc $(MAKEFILE_ROOT)/pulumiup_pulumi_k8s		
 	$(call DONE_TARGET)
 
-.PHONY: dist
-dist:
+.PHONY: package
+package:
 	$(call START_TARGET)
 	$(call START_TASK,Copying README.md and license...)
 	cp $(MAKEFILE_ROOT)/../LICENSE $(MAKEFILE_ROOT)
@@ -41,4 +40,12 @@ dist:
 		--dist-dir $(ARTIFACT_OUT_DIR)
 	$(call START_TASK,Removing copied files...)
 	rm -f $(MAKEFILE_ROOT)/LICENSE $(MAKEFILE_ROOT)/README.rst
+	$(call DONE_TARGET)
+
+
+.PHONY: publish
+publish:
+	$(call START_TARGET)
+	$(call START_TASK,Publishing module...)
+	pipenv run python -m twine upload $(ARTIFACT_OUT_DIR)/**
 	$(call DONE_TARGET)

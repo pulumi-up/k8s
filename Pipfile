@@ -1,15 +1,11 @@
 [[source]]
-name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-
-[dev-packages]
-twine = "*"
-pylint = "*"
+name = "pypi"
 
 [packages]
-pulumi = ">=2.1.0,<3.0.0"
-pulumi-aws = ">=2.2.0,<3.0.0"
+
+[dev-packages]
 
 [requires]
-python_version = "3.7"
+python_version = "3.9"

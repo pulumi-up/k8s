@@ -17,14 +17,14 @@ def readme():
 
 
 setup(
-    name='jen20_pulumi_aws_vpc',
-    version='2.2.0',
+    name='pulumiup_pulumi_k8s',
+    version='0.0.2',
     packages=find_packages(exclude=['tests']),
-    url='https://github.com/jen20/pulumi-aws-vpc-python',
-    license='MPLv2',
-    author='James Nugent',
-    author_email='github@jen20.com',
-    description='A good-practice AWS VPC written in Python for Pulumi',
+    url='https://github.com/pulumi-up/pulumi-k8s',
+    license='GPL3',
+    author='Patrick Wolleb',
+    author_email='pat.wolleb@gmail.com',
+    description='Best practice AWS EKS (Kubernetes) Pulumi component with per availability auto scaling group',
     long_description=readme(),
     long_description_content_type='text/markdown',
     install_requires=[

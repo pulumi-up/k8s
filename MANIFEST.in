@@ -1,3 +1,0 @@
-include README.md
-include LICENSE
-recursive-include jen20_pulumi_aws_vpc *
