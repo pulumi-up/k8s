@@ -18,7 +18,7 @@ def readme():
 
 setup(
     name='pulumiup_pulumi_k8s',
-    version='0.0.2',
+    version='0.0.3',
     packages=find_packages(exclude=['tests']),
     url='https://github.com/pulumi-up/pulumi-k8s',
     license='GPL3',

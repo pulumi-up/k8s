@@ -1,3 +1,3 @@
-# pulumi-eks
+# pulumi-k8s
 
-https://github.com/jen20/pulumi-aws-vpc/blob/master/python/GNUmakefile
+Best practice AWS EKS (Kubernetes) Pulumi component with per availability auto scaling group
