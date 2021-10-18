@@ -25,7 +25,7 @@ test:
 lint:
 	$(call START_TARGET)
 	$(call START_TASK,Linting Python code)
-	pipenv run pylint --rcfile $(MAKEFILE_ROOT)/.pylintrc $(MAKEFILE_ROOT)/pulumiup_pulumi_k8s		
+	pipenv run pylint --rcfile $(MAKEFILE_ROOT)/.pylintrc $(MAKEFILE_ROOT)/pulumiup_k8s		
 	$(call DONE_TARGET)
 
 .PHONY: package
